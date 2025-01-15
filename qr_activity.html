@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QR Code Generator</title>
+<!-- mock up code by Dr.F 12.26.22-->
+</head>
+<h2 style = "color:rgb(216, 81, 81); text-align: center; font-size: 30px;">UI QR Code Basic
+Generator<h2>
+
+<body style="background-color:rgb(241, 161, 161);">
+<!-- The input field where the user can enter the text or URL to encode
+in the QR code -->
+<center>
+    <img id="qr-code-image" alt="QR code">
+</center>
+<center>
+    <input type="text" id="qr-code-value" class="text"placeholder="Enter text or URL" style="height: 25px; weight: 25px ">
+
+    <!-- The button that will trigger the QR code generation -->
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <!-- The img element where the QR code image will be displayed -->
+</center>
+<!-- Include the QRious library -->
+<!--<script src="qrious.min.js" or download></script>-->
+<!--or use the rest-api to call the qrious library -->
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<style>
+    .text{
+        margin-top: 30px;
+        border-radius: 5px;
+    }
+    button{
+        border: none;
+        border-radius: 5px;
+        color: rgb(243, 214, 214);
+        background-color: rgb(216, 81, 81);
+        weight:35px;
+        height: 30px;
+    }
+    img{
+        margin-top: 30px;
+    }
+</style>
+<script>
+function generateQRCode() {
+// Get the value entered by the user
+const value = document.getElementById('qr-code-value').value;
+// Set the options for the QR code in dictionary format
+const options = {
+value: value, // The text or URL to encode in the QR code
+size: 400, // The size of the QR code in pixels
+level: 'H' // The error correction level of the QR code
+};
+// Create a new QR code object
+const qrCode = new QRious(options);
+// Get the QR code image as a data URL
+const qrCodeImage = qrCode.toDataURL();
+// Display the QR code image on the webpage
+// you can assign your default image here
+document.getElementById('qr-code-image').src = qrCodeImage;
+}
+
+</script>
+</body>
+</html>
